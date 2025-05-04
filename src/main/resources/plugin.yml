@@ -1,0 +1,3 @@
+name: fAPI
+version: '${project.version}'
+main: pt.flawless.fapi.FAPI
