@@ -1,3 +1,4 @@
 name: fAPI
-version: '${project.version}'
 main: pt.flawless.fapi.FAPI
+description: Plugin with a set of API's to support other plugins
+version: 1.0
