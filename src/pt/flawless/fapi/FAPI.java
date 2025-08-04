@@ -4,23 +4,25 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import pt.flawless.fapi.logs.FConsoleLogger;
 
 public final class FAPI extends JavaPlugin {
-    public static Plugin plugin;
+    private static Plugin plugin;
     ConsoleCommandSender b = Bukkit.getConsoleSender();
 
     @Override
     public void onEnable() {
         plugin = this;
-        b.sendMessage("§e");
-        b.sendMessage("§e[fAPI] Plugin ativado com sucesso!");
-        b.sendMessage("§e");
+
+        FConsoleLogger.sendEnablePlugin(plugin.getName());
     }
 
     @Override
     public void onDisable() {
-        b.sendMessage("§c");
-        b.sendMessage("§c[fAPI] Plugin desativado com sucesso!");
-        b.sendMessage("§c");
+        FConsoleLogger.sendDisablePlugin(plugin.getName());
+    }
+
+    public static Plugin getMainPlugin() {
+        return plugin;
     }
 }
