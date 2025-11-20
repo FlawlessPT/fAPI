@@ -1,26 +1,26 @@
 package pt.flawless.fapi;
 
-import org.bukkit.Bukkit;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import pt.flawless.fapi.logs.FConsoleLogger;
 
 public final class FAPI extends JavaPlugin {
-    public static Plugin plugin;
-    ConsoleCommandSender b = Bukkit.getConsoleSender();
+    private static Plugin plugin;
+    FConsoleLogger consoleLogger = new FConsoleLogger(this.getName());
 
     @Override
     public void onEnable() {
         plugin = this;
-        b.sendMessage("§e");
-        b.sendMessage("§e[fAPI] Plugin ativado com sucesso!");
-        b.sendMessage("§e");
+
+        consoleLogger.sendEnablePluginMessage();
     }
 
     @Override
     public void onDisable() {
-        b.sendMessage("§c");
-        b.sendMessage("§c[fAPI] Plugin desativado com sucesso!");
-        b.sendMessage("§c");
+        consoleLogger.sendDisablePluginMessage();
+    }
+
+    public static Plugin getMainPlugin() {
+        return plugin;
     }
 }
