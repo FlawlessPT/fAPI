@@ -1,3 +1,8 @@
 # Project exclude paths
 /out/
 .DS_STORE
+.idea/
+*.iml
+.gradle/
+build/
+libraries/*.jar
