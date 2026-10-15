@@ -2,9 +2,6 @@
 
 Pendências conhecidas deste plugin (15/10/2026). Riscar quando feito.
 
-## Depende de outros trabalhos
-- [ ] Remover as classes antigas de SQLite `LocalDatabase`, `LocalDatabaseImpl`, `IDatabaseSetup` e `ILocalDatabaseInit` (estão `@Deprecated`). Só depois de o fAuth migrar para o `DatabaseService` (parte 4 da camada de BD).
-
 ## Código
 - [ ] `FInventory`: criar o `FItemStack` (comentário `TODO` em `inventory/FInventory.java`).
 
