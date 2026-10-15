@@ -12,6 +12,16 @@ public final class Databases {
     private Databases() {
     }
 
+    /**
+     * Devolve o {@link DatabaseService} registado pelo plugin fDatabase.
+     *
+     * <p>Chame no {@code onEnable} (com o fDatabase em {@code depend}) e guarde a instância.
+     *
+     * @return o serviço; nunca {@code null}
+     * @throws DatabaseUnavailableException se o fDatabase estiver ausente ou tiver falhado ao arrancar
+     *         (por exemplo, base de dados inacessível): o consumidor deve apanhá-la no {@code onEnable}
+     *         e desativar-se
+     */
     public static DatabaseService get() {
         return get(() -> Bukkit.getServicesManager().load(DatabaseService.class));
     }
