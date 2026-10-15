@@ -4,6 +4,10 @@ import org.bukkit.Bukkit;
 
 import java.io.File;
 
+/**
+ * @deprecated usar {@link DatabaseService}.
+ */
+@Deprecated
 public class LocalDatabaseImpl {
     public static void init(File dataFolder, ILocalDatabaseInit callback) {
         if (!dataFolder.exists()) {

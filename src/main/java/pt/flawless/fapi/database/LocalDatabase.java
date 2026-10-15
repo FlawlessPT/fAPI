@@ -6,6 +6,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * @deprecated usar {@link DatabaseService}.
+ */
+@Deprecated
 public class LocalDatabase implements IDatabaseSetup {
     private final File dbFile;
     private Connection connection;
