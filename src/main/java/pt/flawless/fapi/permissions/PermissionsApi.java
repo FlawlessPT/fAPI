@@ -8,8 +8,10 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Contrato de permissões, registado no ServicesManager pelo plugin fPermissions.
  *
- * <p>Os futuros completam fora da thread principal do servidor. Falham com {@link IllegalArgumentException} (grupo ou
- * nó inválido); as exceções podem chegar embrulhadas numa {@code CompletionException}.
+ * <p>Os métodos assíncronos devolvem futuros que normalmente completam fora da thread principal do servidor; uma
+ * validação de argumentos falhada devolve um futuro já falhado, na thread de quem chama. Falham com
+ * {@link IllegalArgumentException} (grupo ou nó inválido); as exceções podem chegar embrulhadas numa
+ * {@code CompletionException}.
  */
 public interface PermissionsApi {
 
@@ -93,7 +95,7 @@ public interface PermissionsApi {
     Set<String> getGroupNames();
 
     /**
-     * Devolve as informações de um grupo (síncronos).
+     * Devolve as informações de um grupo (síncrono).
      *
      * @param name nome do grupo
      * @return {@link Optional} contendo as informações, vazio se o grupo não existe

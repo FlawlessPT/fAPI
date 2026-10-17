@@ -1,7 +1,5 @@
 package pt.flawless.fapi.permissions;
 
-import java.util.List;
-
 /**
  * Resultado da verificação de permissão de um jogador. O campo {@code source} indica onde a permissão vem.
  *
