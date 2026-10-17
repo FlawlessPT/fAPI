@@ -49,8 +49,12 @@ public class FTitle {
         PacketPlayOutTitle clearTitlePacket = new PacketPlayOutTitle(
                 EnumTitleAction.RESET, null
         );
+        // Só o RESET deixa o subtítulo no ecrã no cliente 1.8: título e subtítulo vazios põem o contador a 0.
+        IChatBaseComponent empty = new ChatComponentText("");
 
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(clearTitlePacket);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, empty));
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(EnumTitleAction.TITLE, empty));
 
         return this;
     }
