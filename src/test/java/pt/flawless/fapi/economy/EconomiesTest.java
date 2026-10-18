@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,10 @@ class EconomiesTest {
         @Override
         public String format(long cents) {
             return cents + "c";
+        }
+        @Override
+        public CompletableFuture<Optional<UUID>> getRichest() {
+            return CompletableFuture.completedFuture(Optional.empty());
         }
     }
 

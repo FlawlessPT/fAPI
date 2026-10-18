@@ -1,5 +1,6 @@
 package pt.flawless.fapi.economy;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -26,4 +27,7 @@ public interface EconomyApi {
 
     /** Formata cêntimos como euros, por exemplo 1250 -> "12,50€". */
     String format(long cents);
+
+    /** Jogador com o maior saldo (> 0); em empate, o de uuid mais baixo; vazio se ninguém tiver saldo. */
+    CompletableFuture<Optional<UUID>> getRichest();
 }
