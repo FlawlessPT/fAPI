@@ -11,8 +11,13 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface TagsApi {
 
-    /** Textos das tags visíveis do jogador (já com {@code §}), pela ordem da config. */
-    CompletableFuture<List<String>> getVisibleTags(UUID uuid);
+    /** Textos das tags do jogador visíveis nessa superfície (já com {@code §}), pela ordem da config. */
+    CompletableFuture<List<String>> getVisibleTags(UUID uuid, TagSurface surface);
+
+    /** Atalho para as tags visíveis no chat. */
+    default CompletableFuture<List<String>> getVisibleTags(UUID uuid) {
+        return getVisibleTags(uuid, TagSurface.CHAT);
+    }
 
     /**
      * Dá a tag ao jogador. Numa tag {@code unique}, tira-a ao anterior detentor.

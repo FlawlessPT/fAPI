@@ -12,8 +12,11 @@ import org.junit.jupiter.api.Test;
 class TagsTest {
 
     private static final class StubApi implements TagsApi {
+        TagSurface lastSurface;
+
         @Override
-        public CompletableFuture<List<String>> getVisibleTags(UUID uuid) {
+        public CompletableFuture<List<String>> getVisibleTags(UUID uuid, TagSurface surface) {
+            lastSurface = surface;
             return new CompletableFuture<>();
         }
 
@@ -26,6 +29,13 @@ class TagsTest {
         public CompletableFuture<Boolean> take(UUID uuid, String tagId) {
             return new CompletableFuture<>();
         }
+    }
+
+    @Test
+    void getVisibleTagsSemSuperficieUsaChat() {
+        StubApi api = new StubApi();
+        api.getVisibleTags(UUID.randomUUID());
+        assertSame(TagSurface.CHAT, api.lastSurface);
     }
 
     @Test
