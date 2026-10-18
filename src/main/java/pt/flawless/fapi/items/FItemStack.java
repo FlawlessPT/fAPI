@@ -72,12 +72,16 @@ public class FItemStack {
         return this;
     }
 
-    public int getDurability() {
+    public short getDurability() {
         return this.durability;
     }
 
+    /** Em 1.8 o data value (cor da lã, etc.) é a durabilidade do item: define também {@link #setDurability}. */
     public FItemStack setMaterialData(MaterialData materialData) {
         this.materialData = materialData;
+        if (materialData != null) {
+            this.durability = materialData.getData();
+        }
         return this;
     }
 
