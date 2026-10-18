@@ -18,7 +18,7 @@ public interface TagsApi {
      * Dá a tag ao jogador. Numa tag {@code unique}, tira-a ao anterior detentor.
      *
      * @return {@code false} se o jogador já a tinha
-     * @throws IllegalArgumentException (no futuro) se o id for desconhecido
+     * @throws IllegalArgumentException de imediato (síncrono, antes de devolver o futuro) se o tagId for desconhecido
      */
     CompletableFuture<Boolean> give(UUID uuid, String tagId);
 
@@ -26,7 +26,7 @@ public interface TagsApi {
      * Tira a tag ao jogador.
      *
      * @return {@code false} se o jogador não a tinha
-     * @throws IllegalArgumentException (no futuro) se o id for desconhecido
+     * @throws IllegalArgumentException de imediato (síncrono, antes de devolver o futuro) se o tagId for desconhecido
      */
     CompletableFuture<Boolean> take(UUID uuid, String tagId);
 }
