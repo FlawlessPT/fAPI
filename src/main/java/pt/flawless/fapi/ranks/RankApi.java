@@ -10,6 +10,6 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface RankApi {
 
-    /** Rank atual do jogador, já com cores, por exemplo {@code §7Iron 5}. */
+    /** Tag do rank atual do jogador, já com cores, por exemplo {@code §7[IronV]}. */
     CompletableFuture<String> getRankLabel(UUID uuid);
 }
