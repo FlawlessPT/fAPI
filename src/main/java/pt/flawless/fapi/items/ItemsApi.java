@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface ItemsApi {
 
-    /** Cria uma cópia nova do item com quantidade 1; vazio se o id não existir. */
+    /** Cria uma cópia nova do item com a quantidade configurada ({@code quantidade}); vazio se o id não existir. */
     Optional<ItemStack> create(String id);
 
     /** Cria uma cópia nova do item com a quantidade indicada; vazio se o id não existir. */
