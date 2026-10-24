@@ -1,17 +1,16 @@
 package pt.flawless.fapi.title;
 
-import net.minecraft.server.v1_8_R1.EnumTitleAction;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.title.Title;
 import org.bukkit.entity.Player;
-import net.minecraft.server.v1_8_R1.ChatComponentText;
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
-import net.minecraft.server.v1_8_R1.PacketPlayOutTitle;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+
+import java.time.Duration;
 
 public class FTitle {
     private Player player;
     private String title = "§c§lAVISO";
     private String message = "";
-    private int time = 100; // seconds
+    private int time = 100; // ticks
 
     public FTitle() {}
 
@@ -31,30 +30,16 @@ public class FTitle {
     }
 
     public FTitle send() {
-        IChatBaseComponent titleComponent = new ChatComponentText(this.title);
-        IChatBaseComponent subtitleComponent = new ChatComponentText(this.message);
-
-        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.TITLE, titleComponent);
-        PacketPlayOutTitle subtitlePacket = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, subtitleComponent);
-        PacketPlayOutTitle lengthPacket = new PacketPlayOutTitle(5, this.time, 5);
-
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(lengthPacket);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(subtitlePacket);
+        LegacyComponentSerializer legacy = LegacyComponentSerializer.legacySection();
+        // 5 ticks (250 ms) de entrada e saída, como antes; time em ticks
+        player.showTitle(Title.title(legacy.deserialize(this.title), legacy.deserialize(this.message),
+                Title.Times.times(Duration.ofMillis(250), Duration.ofMillis(this.time * 50L), Duration.ofMillis(250))));
 
         return this;
     }
 
     public FTitle clear() {
-        PacketPlayOutTitle clearTitlePacket = new PacketPlayOutTitle(
-                EnumTitleAction.RESET, null
-        );
-        // Só o RESET deixa o subtítulo no ecrã no cliente 1.8: título e subtítulo vazios põem o contador a 0.
-        IChatBaseComponent empty = new ChatComponentText("");
-
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(clearTitlePacket);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, empty));
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutTitle(EnumTitleAction.TITLE, empty));
+        player.resetTitle();
 
         return this;
     }

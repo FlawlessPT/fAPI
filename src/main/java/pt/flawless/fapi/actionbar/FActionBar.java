@@ -1,9 +1,6 @@
 package pt.flawless.fapi.actionbar;
 
-import net.minecraft.server.v1_8_R1.ChatComponentText;
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
-import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 
 public class FActionBar {
@@ -29,20 +26,7 @@ public class FActionBar {
     }
 
     public void send() {
-        IChatBaseComponent chat = new ChatComponentText(message);
-        PacketPlayOutChat packet = new PacketPlayOutChat(chat, (byte) 2); // 2 = action bar
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-//        CraftPlayer player = (CraftPlayer) p;
-//        IChatBaseComponent chatBaseComponent = ChatSerializer.a("{\"text\": \"" + this.message + "\"}");
-//        PacketPlayOutChat packetPlayoutChat = new PacketPlayOutChat(chatBaseComponent, (byte) 2);
-//
-//        Bukkit.getScheduler().scheduleAsyncRepeatingTask(FAPI.plugin, new Runnable() {
-//            @Override
-//            public void run() {
-//                if ((time / 2) > x) player.getHandle().playerConnection.sendPacket(packetPlayoutChat);
-//                x++;
-//            }
-//        }, 0L, 40L);
+        player.sendActionBar(LegacyComponentSerializer.legacySection().deserialize(message));
     }
 
     public String getMessage() {

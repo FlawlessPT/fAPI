@@ -3,7 +3,6 @@ package pt.flawless.fapi.items;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +11,7 @@ public class FItemStack {
     private Material material;
     private String displayName;
     private int quantity;
-    private short durability;
     private List<String> lore;
-    private MaterialData materialData;
 
     public FItemStack(Material material) {
         this.material = material;
@@ -67,33 +64,9 @@ public class FItemStack {
         return this;
     }
 
-    public FItemStack setDurability(short durability) {
-        this.durability = durability;
-        return this;
-    }
-
-    public short getDurability() {
-        return this.durability;
-    }
-
-    /** Em 1.8 o data value (cor da lã, etc.) é a durabilidade do item: define também {@link #setDurability}. */
-    public FItemStack setMaterialData(MaterialData materialData) {
-        this.materialData = materialData;
-        if (materialData != null) {
-            this.durability = materialData.getData();
-        }
-        return this;
-    }
-
-    public MaterialData getMaterialData() {
-        return this.materialData;
-    }
-
     public ItemStack createItem() {
         ItemStack item = new ItemStack(this.material, this.quantity);
         ItemMeta meta = item.getItemMeta();
-
-        item.setDurability(this.durability);
 
         if (meta != null) {
             if (this.displayName != null && !this.displayName.isEmpty()) {

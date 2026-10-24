@@ -11,3 +11,6 @@ Pendências conhecidas deste plugin (15/10/2026). Riscar quando feito.
 
 ## Qualidade
 - [ ] Mais testes: hoje só o `DatabasesTest` existe (ActionBar, Title, Sound, Inventory e BCrypt não têm).
+
+## Migração Paper 1.21
+- [ ] `FItemStackTest` apagado: só testava `setDurability`/`setMaterialData`, removidos do `FItemStack` (a cor passa a estar no `Material`).

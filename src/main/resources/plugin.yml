@@ -2,3 +2,4 @@ name: fAPI
 main: pt.flawless.fapi.FAPI
 description: Plugin with a set of API's to support other plugins
 version: 1.0
+api-version: '1.21'

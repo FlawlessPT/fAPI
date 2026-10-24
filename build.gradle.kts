@@ -3,19 +3,19 @@ plugins { `java-library`; `maven-publish` }
 group = "pt.flawless"
 version = "1.0"
 
-repositories { mavenLocal(); mavenCentral() }
+repositories { mavenLocal(); mavenCentral(); maven("https://repo.papermc.io/repository/maven-public/") }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot:1.8-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("org.spigotmc:spigot:1.8-R0.1-SNAPSHOT")
+    testImplementation("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
 }
 
 tasks.test { useJUnitPlatform() }
 
-tasks.withType<JavaCompile> { options.release = 17; options.encoding = "UTF-8" }
+tasks.withType<JavaCompile> { options.release = 21; options.encoding = "UTF-8" }
 
 tasks.jar { archiveFileName = "${project.name}.jar" }
 
