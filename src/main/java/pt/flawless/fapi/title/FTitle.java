@@ -1,7 +1,9 @@
 package pt.flawless.fapi.title;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.title.Title;
+import net.kyori.adventure.title.TitlePart;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
@@ -40,6 +42,9 @@ public class FTitle {
 
     public FTitle clear() {
         player.resetTitle();
+        // clientes 1.8 (ViaRewind): só o RESET deixa o subtítulo no ecrã
+        player.sendTitlePart(TitlePart.SUBTITLE, Component.empty());
+        player.sendTitlePart(TitlePart.TITLE, Component.empty());
 
         return this;
     }
