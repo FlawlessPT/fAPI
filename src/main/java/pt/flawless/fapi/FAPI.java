@@ -2,6 +2,7 @@ package pt.flawless.fapi;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import pt.flawless.fapi.inventory.ConfirmMenu;
 import pt.flawless.fapi.logs.FConsoleLogger;
 
 public final class FAPI extends JavaPlugin {
@@ -11,6 +12,7 @@ public final class FAPI extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        getServer().getPluginManager().registerEvents(new ConfirmMenu.Handler(), this);
 
         consoleLogger.sendEnablePluginMessage();
     }
