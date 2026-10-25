@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * Menu de confirmação de 27 slots, sem moldura: item de contexto ao centro, botão de confirmar à esquerda, de negar à direita
+ * Menu de confirmação de 36 slots, sem moldura: item de contexto ao centro, botão de confirmar à esquerda, de negar à direita
  * e, opcionalmente, um botão de voltar por baixo. Cada botão tem material, nome, lore e ação próprios.
  * <p>
  * Ao clicar num botão o menu fecha e só depois corre a ação (na thread principal), que pode abrir outro menu.
@@ -26,7 +26,7 @@ public final class ConfirmMenu {
     public static final int SUBJECT_SLOT = 13;
     public static final int CONFIRM_SLOT = 11;
     public static final int DENY_SLOT = 15;
-    public static final int BACK_SLOT = 22;
+    public static final int BACK_SLOT = 31;
 
     /** Um botão: o item e o que fazer ao clicar. */
     public record Button(Material material, String name, List<String> lore, Consumer<Player> action) {
@@ -56,7 +56,7 @@ public final class ConfirmMenu {
      */
     public static void open(Player player, String title, ItemStack subject, Button confirm, Button deny, Button back) {
         MenuHolder holder = new MenuHolder(confirm, deny, back);
-        Inventory inv = new FInventory(holder, FInventorySize.SIZE_27, title).getInventory();
+        Inventory inv = new FInventory(holder, FInventorySize.SIZE_36, title).getInventory();
         holder.inventory = inv;
         if (subject != null) inv.setItem(SUBJECT_SLOT, subject);
         inv.setItem(CONFIRM_SLOT, confirm.item());
